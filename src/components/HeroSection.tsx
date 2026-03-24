@@ -73,9 +73,9 @@ const HeroSection = () => {
             </h1>
 
             <p className="mt-4 text-primary-foreground/85 text-base md:text-lg leading-relaxed max-w-xl mx-auto md:mx-0">
-              Mais de 1.200 empresas já encontraram o plano ideal
+              Valorize sua empresa e seus colaboradores
               <br />
-              com nossos estudos personalizados.
+              saúde é uma prioridade.
             </p>
 
             <div className="mt-4 space-y-3 max-w-sm mx-auto md:mx-0">

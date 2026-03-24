@@ -34,7 +34,7 @@ const clientsRow2: ClientLogo[] = [
   { name: "Medassist", logo: logoMedassist, logoClassName: "scale-[1.8]" },
   { name: "Lenvie", logo: logoLenvie },
   { name: "Hurst", logo: logoHurst, logoClassName: "scale-[1.75]" },
-  { name: "Specialist", logo: logoSpecialist, logoClassName: "h-[250%] w-[320%] max-h-none max-w-none" },
+  { name: "Specialist", logo: logoSpecialist, logoClassName: "h-[200%] w-[260%] max-h-none max-w-none" },
   { name: "Transripoli", logo: logoTransripoli },
   { name: "Dupps", logo: logoDupps },
 ];
