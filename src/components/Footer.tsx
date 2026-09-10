@@ -8,7 +8,9 @@ const Footer = () => {
         <div className="grid sm:grid-cols-3 gap-3">
           {/* Logo + Address */}
           <div>
-            <img src={logoFbn} alt="Grupo FBN" className="h-14 w-auto mb-1 brightness-0 invert" />
+            <a href="#" onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
+              <img src={logoFbn} alt="Grupo FBN" className="h-14 w-auto mb-1 brightness-0 invert cursor-pointer" />
+            </a>
           </div>
 
           {/* Sobre a FBN */}
@@ -26,7 +28,7 @@ const Footer = () => {
             <ul className="space-y-0.5 text-xs text-primary-foreground/80">
               <li className="flex items-center gap-2">
                 <MessageCircle className="h-3.5 w-3.5" />
-                <a href="https://wa.me/5511943880362" target="_blank" rel="noopener noreferrer" className="hover:text-primary-foreground transition-colors">
+                <a href="https://wa.me/5511934617280?text=Ol%C3%A1%2C%20estava%20na%20p%C3%A1gina%20de%20plano%20de%20sa%C3%BAde%20e%20fique%20com%20uma%20d%C3%BAvida" target="_blank" rel="noopener noreferrer" className="hover:text-primary-foreground transition-colors">
                   WhatsApp
                 </a>
               </li>

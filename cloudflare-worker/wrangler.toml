@@ -1,0 +1,6 @@
+name = "saude-meta-capi"
+main = "src/index.ts"
+compatibility_date = "2026-04-09"
+
+[vars]
+META_API_VERSION = "v20.0"

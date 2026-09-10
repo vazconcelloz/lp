@@ -85,7 +85,11 @@ const CoveragesSection = () => {
             {healthOperators.map((operator) => (
               <div
                 key={operator.name}
-                className="h-24 px-4 flex items-center justify-center"
+                className={
+                  operator.name === "SulAmerica"
+                    ? "h-24 px-4 flex items-center justify-center col-span-2 md:col-span-1"
+                    : "h-24 px-4 flex items-center justify-center"
+                }
               >
                 <img
                   src={operator.logo}

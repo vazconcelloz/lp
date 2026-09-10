@@ -3,6 +3,7 @@ import { CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { reportGoogleAdsConversion } from "@/lib/google-ads";
 
 const formatWhatsapp = (value: string) => {
   const digits = value.replace(/\D/g, "").slice(0, 11);
@@ -36,12 +37,23 @@ const CTASection = () => {
 
     const nome = String(formData.get("nome") ?? "").trim();
     const email = String(formData.get("email") ?? "").trim();
-    const planoAtivo = String(formData.get("planoAtivo") ?? "").trim();
 
-    if (!nome || !email || !whatsapp.trim() || !cnpj.trim() || !planoAtivo) {
+    if (!nome || !email || !whatsapp.trim() || !cnpj.trim()) {
       setFeedbackMessage("Preencha todos os campos para enviar o formulario.");
       setShowSuccessPopup(false);
       return;
+    }
+
+    if (typeof window !== "undefined" && (window as any).fbq) {
+      (window as any).fbq("trackCustom", "FormularioEnviado");
+    }
+
+    reportGoogleAdsConversion();
+
+    if (typeof (window as any).gtag === "function") {
+      (window as any).gtag("event", "formulario_enviado", {
+        form_name: "formulario_estudo"
+      });
     }
 
     setFeedbackMessage("");
@@ -64,7 +76,7 @@ const CTASection = () => {
           <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-primary-foreground" /> Atendimento personalizado</span>
         </div>
 
-        <form onSubmit={handleSubmit} className="mt-10 max-w-3xl mx-auto bg-primary-foreground/10 border border-primary-foreground/20 rounded-xl p-5 md:p-6 text-left">
+        <form name="formulario-estudo" onSubmit={handleSubmit} className="mt-10 max-w-3xl mx-auto bg-primary-foreground/10 border border-primary-foreground/20 rounded-xl p-5 md:p-6 text-left">
           <div className="grid md:grid-cols-2 gap-4">
             <div className="space-y-2 md:col-span-2">
               <Label htmlFor="cta-nome" className="text-primary-foreground font-semibold">*NOME:</Label>
@@ -106,21 +118,17 @@ const CTASection = () => {
               />
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="cta-plano" className="text-primary-foreground font-semibold">*JÁ POSSUI UM PLANO ATIVO?</Label>
-              <select id="cta-plano" name="planoAtivo" className="flex h-10 w-full rounded-md border border-primary-foreground/50 bg-primary-foreground px-3 py-2 text-sm text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-foreground/60" required>
-                <option value="">Selecione</option>
-                <option value="sim">Sim</option>
-                <option value="nao">Nao</option>
-              </select>
-            </div>
           </div>
 
           <p className="mt-6 text-sm text-primary-foreground/90">
             Ao enviar, concordo em receber comunicações e conteúdos da FBN.
           </p>
 
-          <Button type="submit" size="lg" className="mt-3 w-full md:w-auto bg-primary-foreground text-primary hover:bg-primary-foreground/90 font-heading font-bold text-base h-12">
+          <Button
+            type="submit"
+            size="lg"
+            className="mt-3 w-full md:w-auto bg-primary-foreground text-primary hover:bg-primary-foreground/90 font-heading font-bold text-base h-12"
+          >
             Enviar dados para estudo
           </Button>
 
